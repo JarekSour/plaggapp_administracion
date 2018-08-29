@@ -1,0 +1,9 @@
+.base{
+    min-height:100vh !important;
+}
+
+.img-avatar{
+    max-width: 240px !important;
+    border: 2px solid #fff;
+    box-shadow: 0 0 5px grey;
+}

@@ -1,0 +1,38 @@
+<header id="header">
+    <div class="headerbar">
+        <div class="headerbar-left">
+            <ul class="header-nav header-nav-options">
+                <li class="header-nav-brand">
+                    <div class="brand-holder">
+                        <a routerLink="/home">
+                            <img src="assets/img/logo.png" class="logo">
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="headerbar-right">
+            <ul class="header-nav header-nav-profile">
+                <li class="dropdown" [ngClass]="menu ? 'open': ''">
+                    <a (click)="menu = !menu" class="dropdown-toggle ink-reaction cursor" data-toggle="dropdown">
+                        <img [src]="avatar" alt="" />
+                        <span class="profile-info">
+                            {{nombre}}
+                            <small>Administrador</small>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu animation-dock">
+                        <li>
+                            <a routerLink="/profile" style="cursor: pointer;">
+                                <i class="fa fa-user-secret"></i> Perfil</a>
+                        </li>
+                        <li>
+                            <a (click)="closeSession()" style="cursor: pointer;">
+                                <i class="fa fa-fw fa-power-off text-danger"></i> Cerrar sesión</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>

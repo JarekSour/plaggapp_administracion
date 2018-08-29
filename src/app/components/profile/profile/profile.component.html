@@ -1,0 +1,216 @@
+<body class="menubar-hoverable header-fixed menubar-pin ">
+    <app-header></app-header>
+
+    <div id="base" class="base">
+
+
+        <div class="offcanvas">
+        </div>
+
+        <div id="content">
+            <section>
+                <div class="section-body">
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-10 col-md-offset-1">
+                                            <div class="col-md-3 col-xs-5">
+                                                <img class="border-white border-xl img-responsive auto-width img-avatar" [src]="json.logo" alt="">
+                                                <h3>{{json.nombre}}
+                                                    <br>
+                                                    <small>{{json.rut}}</small>
+                                                </h3>
+                                            </div>
+                                            <!--end .col -->
+                                            <div class="col-md-9 col-xs-7" *ngIf="!licence.nombre">
+                                                <div class="width-4 text-center pull-right">
+                                                    <span class="text-danger" style="font-size: 19px;">Aún no se agrega una licencia</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-9 col-xs-7" *ngIf="licence.nombre">
+                                                <div class="width-3 text-center pull-right">
+                                                    <strong style="font-size: 150%;">{{licence.dispo}}</strong>
+                                                    <br>
+                                                    <span class="text-light opacity-75">Disp. activos</span>
+                                                </div>
+                                                <div class="width-3 text-center pull-right">
+                                                    <strong style="font-size: 150%;">{{licence.max}}</strong>
+                                                    <br>
+                                                    <span class="text-light opacity-75">Max. dispositivos</span>
+                                                </div>
+                                                <div class="width-3 text-center pull-right">
+                                                    <strong style="font-size: 150%;">{{licence.nombre}}</strong>
+                                                    <br>
+                                                    <span class="text-light opacity-75">Plan contratado</span>
+                                                </div>
+                                                <div class="width-3 text-center pull-right">
+                                                    <strong style="font-size: 150%;">{{licence.fecha | date: 'dd/MM/yyyy' }}</strong>
+                                                    <br>
+                                                    <span class="text-light opacity-75">Fecha de caducidad</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 col-xs-12">
+                                                <div class="col-md-6 col-xs-12">
+                                                    <div class="form">
+                                                        <div class="form-group">
+                                                            <label>Razon social</label>
+                                                            <p class="form-control-static">{{json.razon}}</p>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Resolución</label>
+                                                            <p class="form-control-static">{{json.resolucion}}</p>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Email</label>
+                                                            <p class="form-control-static">{{json.email}}</p>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Dirección</label>
+                                                            <p class="form-control-static">{{json.direccion}}</p>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Ciudad</label>
+                                                            <p class="form-control-static">{{json.ciudad}}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-xs-12">
+                                                    <div class="form">
+                                                        <div class="form-group">
+                                                            <label>Télefono</label>
+                                                            <p class="form-control-static">{{json.fono}}</p>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Fax</label>
+                                                            <p class="form-control-static">{{json.fax}}</p>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Web</label>
+                                                            <p class="form-control-static">{{json.web}}</p>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Rut del representante</label>
+                                                            <p class="form-control-static">{{json.r_representante}}</p>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Nombre del representante</label>
+                                                            <p class="form-control-static">{{json.representante}}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <form class="form form-validate" (submit)="insertLicence()" #insertLicenceForm="ngForm">
+                                <div class="card">
+                                    <div class="card-head style-accent">
+                                        <header>Ingresar licencia</header>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <input class="form-control" id="licencia" name='licencia' type="text" [(ngModel)]="newlicence.key" required>
+                                            <label for="licencia">Licencia</label>
+                                        </div>
+                                        <div class="alert alert-danger" role="alert" *ngIf="dvError">
+                                            La licencia ingresada no es válida
+                                        </div>
+                                    </div>
+                                    <div class="card-actionbar">
+                                        <div class="card-actionbar-row">
+                                            <button class="btn ink-reaction btn-primary" type="submint" [disabled]="!insertLicenceForm.form.valid">ingresar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="menubar" class=" ">
+            <div class="menubar-fixed-panel">
+                <div>
+                    <a class="btn btn-icon-toggle btn-default menubar-toggle" data-toggle="menubar" href="javascript:void(0);">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                </div>
+                <div class="expanded">
+                    <span class="text-lg text-bold text-primary ">MATERIAL&nbsp;ADMIN</span>
+                </div>
+            </div>
+            <div class="menubar-scroll-panel">
+                <ul id="main-menu" class="gui-controls">
+                    <li>
+                        <a routerLink="/home">
+                            <div class="gui-icon">
+                                <i class="md md-home"></i>
+                            </div>
+                            <span class="title">Inicio</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/agendamiento">
+                            <div class="gui-icon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <span class="title">Agendado</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/equipo">
+                            <div class="gui-icon">
+                                <i class="fa fa-users"></i>
+                            </div>
+                            <span class="title">Equipo técnico</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/clientes">
+                            <div class="gui-icon">
+                                <i class="glyphicon glyphicon-user"></i>
+                            </div>
+                            <span class="title">Clientes</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/ordenes">
+                            <div class="gui-icon">
+                                <i class="md md-format-list-bulleted"></i>
+                            </div>
+                            <span class="title">Ordenes de trabajo</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/informes">
+                            <div class="gui-icon">
+                                <i class="fa fa-line-chart"></i>
+                            </div>
+                            <span class="title">Informes</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/parametros">
+                            <div class="gui-icon">
+                                <i class="md md-aspect-ratio"></i>
+                            </div>
+                            <span class="title">Parámetros</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="menubar-foot-panel">
+                    <small class="no-linebreak hidden-folded">
+                        <span class="opacity-75">Copyright &copy; {{ authService.copyYear() }}</span>
+                        <strong>PlagAPP</strong>
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
